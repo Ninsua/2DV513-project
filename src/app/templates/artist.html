@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>{{ artist.name }}</title>
+	</head>
+	<body>
+		<h1>{{ artist.name }}</h1>
+
+		{% if artist_releases %}
+		<div>
+			<h2>
+				Releases
+			</h2>
+		</div>
+		<div>
+
+		<div class="divTable">
+			<div class="divTableBody">
+				{% for release in artist_releases %}
+				<div class="divTableRow">
+					<div class="divTableCell">
+						<a href="/release/{{ release.id }}">
+							{{ release.title }}
+						</a>
+					</div>
+					<div class="divTableCell">
+						{{ release.format }}
+					</div>
+					<div class="divTableCell">
+						<a href="/label/{{ release.label_id }}">
+							{{ release.label_name }}
+						</a>
+					</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		</div>
+		{% endif %}
+	</body>
+</html>
