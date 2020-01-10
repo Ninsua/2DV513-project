@@ -1,8 +1,5 @@
-<html>
-	<head>
-		<title>{{ release.title }}</title>
-	</head>
-	<body>
-		<h1>{{ release.title }}</h1>
-	</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ release.title }}</h1>
+{% endblock %}

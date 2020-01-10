@@ -1,33 +1,63 @@
-<html>
-	<head>
-		<title>{{ label.name }}</title>
-	</head>
-	<body>
-		<h1>{{ label.name }}</h1>
+{% extends "base.html" %}
 
-		{% if label_releases %}
-		<div>
-			<h2>
-				Releases
-			</h2>
+{% block content %}
+<section class="hero is-info is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{ label.name }}
+      </h1>
+    </div>
+  </div>
+</section>
+
+{% if label_releases %}
+<section class="section">
+	<div class="container">
+		<h2 class="is-size-3">
+			Releases
+		</h2>
+
+		<div class="columns">
+			<div class="column is-half">
+				<p class="is-size-4">
+					Title
+				</p>
+			</div>
+			<div class="column is-one-quarter">
+				<p class="is-size-4">
+					Artist name
+				</p>
+			</div>
+			<div class="column is-one-quarter">
+				<p class="is-size-4">
+					Format
+				</p>
+			</div>
 		</div>
-		<div>
-			<div class="divTable">
-				<div class="divTableBody">
-					{% for release in label_releases %}
-					<div class="divTableRow">
-						<div class="divTableCell">
-							<a href="/artist/{{ release.id }}">{{ release.title }}</a>
-						</div>
-						<div class="divTableCell">
-							<a href="/release/{{ release.id }}">{{ release.title }}</a>
-						</div>
-						<div class="divTableCell">{{ release.format }}</div>
-					</div>
-					{% endfor %}
+
+		{% for release in label_releases %}
+		<div class="box">
+			<div class="columns">
+				<div class="column is-half">
+					<a href="/release/{{ release.id }}" class="button is-primary">
+						{{ release.title }}
+					</a>
+				</div>
+				<div class="column is-one-quarter">
+					<a href="/artist/{{ release.artist_id }}" class="button is-success">
+						{{ release.artist_name }}
+					</a>
+				</div>
+				<div class="column is-one-quarter">
+					<p class="tag is-primary is-light">
+						{{ release.format }}
+					</p>
 				</div>
 			</div>
 		</div>
-		{% endif %}
-	</body>
-</html>
+		{% endfor %}
+	</div>
+</section>
+{% endif %}
+{% endblock %}

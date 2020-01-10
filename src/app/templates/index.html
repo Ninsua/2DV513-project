@@ -1,13 +1,10 @@
-<html>
-	<head>
-		<title>{{ title }}</title>
-	</head>
-	<body>
-		<h1>Test</h1>
-		{% for artist in artists %}
-		<div>
-			{{ artist.name }}
-		</div>
-		{% endfor %}
-	</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Test</h1>
+{% for artist in artists %}
+<div>
+	{{ artist.name }}
+</div>
+{% endfor %}
+{% endblock %}

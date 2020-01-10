@@ -22,6 +22,7 @@ def get_releases_for_artist(id):
 
 def get_releases_for_labels(id):
     releases_list = []
+    releases_list.append(psalms)
     releases_list.append(chapters)
     releases_list.append(verses)
     releases_list.append(disposal_dharmata)
@@ -102,25 +103,33 @@ artists.append(defsanity)
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', title='Musica!', artists=artists)
+    return render_template('index.html', artists=artists)
+
+@app.route('/artists')
+def render_artists():
+    return render_template('artists.html', artists=artists)
 
 @app.route('/artist/<artist_id>/')
-def artist(artist_id):
+def render_artist(artist_id):
     artist = get_artist(artist_id)
     artist_releases = get_releases_for_artist(artist_id)
 
     for release in artist_releases:
         release['label_name'] = get_label(release['label_id'])['name']
 
-    return render_template('artist.html', artist=artist, artist_releases=artist_releases)
+    return render_template('artist.html', title=artist['name'], artist=artist, artist_releases=artist_releases)
 
 @app.route('/label/<label_id>/')
-def label(label_id):
+def render_label(label_id):
     label = get_label(label_id)
     label_releases = get_releases_for_labels(label_id)
+
+    for release in label_releases:
+        release['artist_name'] = get_artist(release['artist_id'])['name']
+
     return render_template('label.html', label=label, label_releases=label_releases)
 
 @app.route('/release/<release_id>/')
-def release(release_id):
+def render_release(release_id):
     release = get_release(release_id)
     return render_template('release.html', release=release)

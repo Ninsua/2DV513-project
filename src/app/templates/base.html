@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - MusicDB</title>
+      {% else %}
+      <title>Welcome to MusicDB</title>
+      {% endif %}
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/bulma.css') }}">
+      <script type="module" src="{{ url_for('static', filename='js/app.js') }}"></script>
+    </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/index">
+          <img class="customNavbarIcon" src="{{ url_for('static', filename='img/logo.png') }}">
+          <p class="is-size-5">MusicDB</p>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/artists">
+            Artists
+          </a>
+
+          <a class="navbar-item">
+            Labels
+          </a>
+
+          <a class="navbar-item">
+            Releases
+          </a>
+
+          <a class="navbar-item">
+            Genres
+          </a>
+        </div>
+
+      </div>
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+</html>
