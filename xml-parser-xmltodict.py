@@ -2,7 +2,7 @@ from lxml.etree import iterparse
 import mysql.connector
 
 FILENAME = "discogs_20080309_releases.xml"
-N_INSERTS = 10000
+BATCH_SIZE = 10000
 DB_USER = 'user'
 DB_PASSWORD = 'CorrectHorseBatteryStaple'
 DB_NAME = 'assignment3'
@@ -52,7 +52,7 @@ def perform_insert():
     except mysql.connector.Error as err:
         print(err)
     
-    print("Inserted so far: ", counter)
+    print("Inserted {:,}...".format(counter))
     
 
 def reset_lists():
@@ -76,6 +76,8 @@ dbConnector = mysql.connector.connect(user=DB_USER, password=DB_PASSWORD, host='
 dbCursor = dbConnector.cursor()
 database = DB_NAME
 dbConnector.database = database
+
+print("\nStarting...")
 
 for event, elem in iterparse(FILENAME):    
     if elem.tag == "release":
@@ -119,10 +121,15 @@ for event, elem in iterparse(FILENAME):
         
         release_genre_data = []        
 
-        if counter % N_INSERTS == 0:
+        if counter % BATCH_SIZE == 0:
             perform_insert()
             reset_lists()              
 
+
 perform_insert()
+
+print("Inserted a total of {:,}".format(counter))
+print("Exiting...")
+
 dbConnector.commit()
 dbConnector.close()
