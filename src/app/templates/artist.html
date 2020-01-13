@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if artist_releases %}
+{% if artist %}
 <section class="hero is-info is-bold">
   <div class="hero-body">
     <div class="container">
@@ -19,7 +19,7 @@
 		</h2>
 
 		<div class="columns">
-			<div class="column is-half">
+			<div class="column is-one-quarter">
 				<p class="is-size-4">
 					Title
 				</p>
@@ -27,6 +27,11 @@
 			<div class="column is-one-quarter">
 				<p class="is-size-4">
 					Label
+				</p>
+			</div>
+			<div class="column is-one-quarter">
+				<p class="is-size-4">
+					Date
 				</p>
 			</div>
 			<div class="column is-one-quarter">
@@ -39,16 +44,24 @@
 		{% for release in artist_releases %}
 		<div class="box">
 			<div class="columns">
-				<div class="column is-half">
-					<a href="/release/{{ release.id }}" class="button is-success">
+				<div class="column is-one-quarter">
+					<a href="/release/{{ release.release_id }}" class="button is-success">
 						{{ release.title }}
 					</a>
 				</div>
+
 				<div class="column is-one-quarter">
 					<a href="/label/{{ release.label_id }}" class="button is-primary">
 						{{ release.label_name }}
 					</a>
 				</div>
+
+				<div class="column is-one-quarter">
+					<p class="tag is-success is-light">
+						{{ release.date }}
+					</p>
+				</div>
+
 				<div class="column is-one-quarter">
 					<p class="tag is-primary is-light">
 						{{ release.format }}

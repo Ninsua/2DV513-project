@@ -81,7 +81,7 @@ dbConnector.database = database
 print("\nStarting...")
 
 for event, elem in iterparse(FILENAME):    
-    if counter == STOP_AT: 
+    if counter >= STOP_AT: 
         reset_lists()
         break
     if elem.tag == "release":

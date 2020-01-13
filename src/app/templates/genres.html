@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+	<div class="container">
+		<h1 class="title">
+			Genres
+		</h1>
+	</div>
+	<div class="container">
+		<div class="columns is-multiline">
+			{% for genre in genres %}
+			<div class="column is-one-fifth">
+				<a href="/genre/{{ genre.id }}" class="button is-primary">
+					{{ genre.name }}
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}

@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 flask = "*"
 python-dotenv = "*"
+mysql-connector = "*"
+lxml = "*"
 
 [requires]
 python_version = "3.7"
