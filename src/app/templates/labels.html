@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+	<div class="container">
+		<h1 class="title">
+			Labels
+		</h1>
+	</div>
+	<div class="container">
+		<div class="columns is-multiline">
+			{% for label in labels %}
+			<div class="column is-one-fifth">
+				<a href="/label/{{ label.id }}" class="button is-primary">
+					{{ label.name }}
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}

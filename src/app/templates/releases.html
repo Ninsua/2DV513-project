@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+	<div class="container">
+		<h1 class="title">
+			Releases
+		</h1>
+	</div>
+	<div class="container">
+		<div class="columns is-multiline">
+			{% for release in releases %}
+			<div class="column is-one-fifth">
+				<a href="/release/{{ release.id }}" class="button is-primary">
+					{{ release.title }}
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}

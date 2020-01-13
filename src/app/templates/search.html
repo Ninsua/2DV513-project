@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+	<div class="container">
+		<h1 class="title">
+			Search results...
+		</h1>
+	</div>
+	<div class="container">
+		<div class="columns is-multiline">
+			{% for result in search_results %}
+			<div class="column is-one-fifth">
+				<a href="/artist/{{ result.id }}" class="button is-primary">
+					{{ result.name }}
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %}

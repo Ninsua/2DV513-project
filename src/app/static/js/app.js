@@ -18,3 +18,21 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 })
+
+const searchListener = (event) => {
+  const searchBar = document.querySelector('#searchBar')
+  const searchDropdown = document.querySelector('#searchType')
+
+  const searchContent = searchBar.value
+  const searchType = searchDropdown.options[searchDropdown.selectedIndex].value
+
+  if (searchContent == '') {
+    searchBar.classList.add('is-danger')
+  } else if (searchType == '') {
+    searchDropdown.classList.add('is-danger')
+  } else {
+    window.location.href = '/search/' + searchType + '/' + searchContent
+  }
+}
+
+document.querySelector('#searchButton').addEventListener('click', searchListener)

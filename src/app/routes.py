@@ -28,6 +28,10 @@ def get_releases_for_labels(id):
     releases_list.append(disposal_dharmata)
     return releases_list
 
+def get_search_results(term, type):
+
+    return artists
+
 artists = []
 labels = []
 releases = []
@@ -97,8 +101,28 @@ wat = {
     'artist_id':1
 }
 
+opus = {
+    'title':'Opus Dei',
+    'format':'CD',
+    'release_date':'1989-00-00',
+    'id':11,
+    'label_id':2,
+    'artist_id':1
+}
+
 artists.append(laibach)
 artists.append(defsanity)
+
+labels.append(willowtip)
+labels.append(mute)
+
+releases.append(psalms)
+releases.append(chapters)
+releases.append(verses)
+releases.append(disposal_dharmata)
+releases.append(wat)
+releases.append(opus)
+
 
 @app.route('/')
 @app.route('/index')
@@ -108,6 +132,14 @@ def index():
 @app.route('/artists')
 def render_artists():
     return render_template('artists.html', artists=artists)
+
+@app.route('/labels')
+def render_labels():
+    return render_template('labels.html', labels=labels)
+
+@app.route('/releases')
+def render_releases():
+    return render_template('releases.html', releases=releases)
 
 @app.route('/artist/<artist_id>/')
 def render_artist(artist_id):
@@ -133,3 +165,8 @@ def render_label(label_id):
 def render_release(release_id):
     release = get_release(release_id)
     return render_template('release.html', release=release)
+
+@app.route('/search/<type>/<term>')
+def render_search(term, type):
+    search_results = get_search_results(term, type)
+    return render_template('search.html', search_results=search_results)
