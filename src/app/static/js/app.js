@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 const searchListener = (event) => {
+  event.preventDefault()
   const searchBar = document.querySelector('#searchBar')
   const searchDropdown = document.querySelector('#searchType')
 
