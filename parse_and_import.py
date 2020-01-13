@@ -3,6 +3,7 @@ import mysql.connector
 
 FILENAME = "discogs_20080309_releases.xml"
 BATCH_SIZE = 10000
+STOP_AT = 100000
 DB_USER = 'user'
 DB_PASSWORD = 'CorrectHorseBatteryStaple'
 DB_NAME = 'assignment3'
@@ -80,6 +81,9 @@ dbConnector.database = database
 print("\nStarting...")
 
 for event, elem in iterparse(FILENAME):    
+    if counter == STOP_AT: 
+        reset_lists()
+        break
     if elem.tag == "release":
         counter += 1
         
