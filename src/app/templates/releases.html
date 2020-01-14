@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="columns is-multiline">
 			{% for release in releases %}
-			<div class="column is-one-fifth">
+			<div class="column is-one-fifth" onload="console.log('test')">
 				<a href="/release/{{ release.id }}" class="button is-primary">
 					{{ release.title }}
 				</a>

@@ -1,10 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Test</h1>
-{% for artist in artists %}
-<div>
-	{{ artist.name }}
-</div>
-{% endfor %}
+<section class="section">
+	<div class="tile is-ancestor">
+		<div class="tile is-parent is-vertical">
+		  	<article class="tile is-child notification is-success">
+		        <p class="title">Top 5 Labels...</p>
+
+			    {% for label in top_labels %}
+			   	<div class="content">
+			    	<a href="/label/{{ label.id }}">
+			    		<Strong>{{ label.name }}</Strong>
+			    	</a>
+			    	<p class="is-small">Amount of releases: {{ label.n_releases }}</p>
+			    </div>
+		    {% endfor %}
+		    </article>
+		</div>
+
+		<div class="tile is-parent is-vertical">
+		  	<article class="tile is-child notification is-primary">
+		        <p class="title">Top 5 Artists...</p>
+
+			    {% for artist in top_artists %}
+			   	<div class="content">
+			    	<a href="/artist/{{ artist.id }}">
+			    		<Strong>{{ artist.name }}</Strong>
+			    	</a>
+			    	<p class="is-small">Amount of releases: {{ artist.n_releases }}</p>
+			    </div>
+		    {% endfor %}
+		    </article>
+		</div>
+
+	</div>
+</section>
 {% endblock %}

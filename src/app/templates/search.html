@@ -9,6 +9,7 @@
 	</div>
 	<div class="container">
 		<div class="columns is-multiline">
+			{% if type == 'artists' %}
 			{% for result in search_results %}
 			<div class="column is-one-fifth">
 				<a href="/artist/{{ result.id }}" class="button is-primary">
@@ -16,6 +17,78 @@
 				</a>
 			</div>
 			{% endfor %}
+			{% endif %}
+
+			{% if type == 'labels' %}
+			{% for result in search_results %}
+			<div class="column is-one-fifth">
+				<a href="/label/{{ result.id }}" class="button is-primary">
+					{{ result.name }}
+				</a>
+			</div>
+			{% endfor %}
+			{% endif %}
+
+			{% if type == 'releases' %}
+			<div class="column is-one-quarter">
+				<p class="is-size-4">
+					Title
+				</p>
+			</div>
+			<div class="column is-one-quarter">
+				<p class="is-size-4">
+					Artist name
+				</p>
+			</div>
+			<div class="column is-one-quarter">
+				<p class="is-size-4">
+					Date
+				</p>
+			</div>
+			<div class="column is-one-quarter">
+				<p class="is-size-4">
+					Format
+				</p>
+			</div>
+
+			{% for release in search_results %}
+			<div class="box column is-full">
+				<div class="columns">
+					<div class="column is-one-quarter">
+						<a href="/release/{{ release.release_id }}" class="button is-primary">
+							{{ release.title }}
+						</a>
+					</div>
+					<div class="column is-one-quarter">
+						<a href="/artist/{{ release.artist_id }}" class="button is-success">
+							{{ release.artist_name }}
+						</a>
+					</div>
+					<div class="column is-one-quarter">
+						<p class="tag is-success is-light">
+							{{ release.date }}
+						</p>
+					</div>
+
+					<div class="column is-one-quarter">
+						<p class="tag is-primary is-light">
+							{{ release.format }}
+						</p>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			{% endif %}
+
+			{% if type == 'genres' %}
+			{% for genre in search_results %}
+			<div class="column is-one-fifth">
+				<a href="/genre/{{ genre.id }}" class="button is-primary">
+					{{ genre.name }}
+				</a>
+			</div>
+			{% endfor %}
+			{% endif %}
 		</div>
 	</div>
 </section>
