@@ -62,6 +62,8 @@ def reset_lists():
     genre_data = []
     style_data = []    
     superlistan = []
+    release_genre_data = []
+    release_data = ()
 
 artist_data = []            
 label_data = []
@@ -129,8 +131,8 @@ for event, elem in iterparse(FILENAME):
             perform_insert()
             reset_lists()              
 
-
-perform_insert()
+if counter <= STOP_AT:
+    perform_insert()
 
 print("Inserted a total of {:,}".format(counter))
 print("Exiting...")
